@@ -1,1 +1,2 @@
 - [x] canvas像素级操作(左x 下y) 模仿openglAPI 分离clear draw setPixel setLine set三角形等操作 draw太耗费性能
+- [x] 画线

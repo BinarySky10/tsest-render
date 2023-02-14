@@ -1,3 +1,5 @@
+
+
 export default class SunGL{
   private canvas: HTMLCanvasElement
   private context: CanvasRenderingContext2D
@@ -28,9 +30,7 @@ export default class SunGL{
     this.imageData.data[y*ys*4 + 4*x + 2 ] = Math.floor(0)
     this.imageData.data[y*ys*4 + 4*x + 3 ] = Math.floor(255)
   }
-  setLine(start, end) {
-    
-  }
+  
   setAll() {
     for (let y = 0; y < 400; y++) {
       for (let x = 0; x < 400; x++) {

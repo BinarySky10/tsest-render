@@ -21,4 +21,6 @@ let triangle = new Triangle({ x: 1, y: 1 }, { x: 400, y: 700 }, { x: 700, y: 500
 triangle.draw(gl)
 
 gl.draw()
+import { Vector22 } from '../lib/math/vector2'
+console.log(new Vector22(1,2))
 // gl.clear()

@@ -24,25 +24,22 @@ function getLine():Line {
 
 
 import './style.css'
+const VIEW_WIDTH = 800;
+const VIEW_HEIGHT = 800;
 const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
-canvas.width = 800;
-canvas.height = 800;
-const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-//绘制矩形
-// ctx.fillStyle = 'green';
-// ctx.fillRect(10, 10, 150, 100);
-var myImageData = ctx.createImageData(800, 800) as ImageData;
+canvas.width = VIEW_WIDTH;
+canvas.height = VIEW_HEIGHT;
 
-function drawPoint(x:number,y:number){
-  //绘制点
-  let index = ((x >> 0) + (y >> 0) * 800 /*width */) * 4;
-  myImageData.data[index] = 0;//r
-  myImageData.data[index + 1] = 0;//g
-  myImageData.data[index + 2] = 0;//b
-  myImageData.data[index + 3] = 1;//a
-}
 
-for (let i = 0; i < 10; i++) {
-  drawPoint(i*0.01,i*0.02)
+
+var ctx=canvas.getContext("2d");
+var obj=ctx.getImageData(0,0,800,800);
+
+console.log(obj.data.length);//2560000= 800*800*4
+for (var i=0;i< obj.data.length; i++) {
+    obj.data[0+4*i]=Math.floor(Math.random()*255)
+    obj.data[1+4*i]=Math.floor(Math.random()*255)
+    obj.data[2+4*i]=Math.floor(Math.random()*255)
+    obj.data[3+4*i]=Math.floor(Math.random()*255)
 }
-ctx.putImageData(myImageData,0,0);
+ctx.putImageData(obj,0,0)

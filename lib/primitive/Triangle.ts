@@ -23,7 +23,6 @@ export default class Triangle{
     tmp = computeLinePixels(this.p2, this.p3)
     this._pixels.push(...tmp)
     tmp = computeLinePixels(this.p3, this.p1)
-    // debugger
     this._pixels.push(...tmp)
   }
   draw(gl:SunGL) {

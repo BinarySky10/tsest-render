@@ -24,22 +24,15 @@ function getLine():Line {
 
 
 import './style.css'
-const VIEW_WIDTH = 800;
-const VIEW_HEIGHT = 800;
+window.VIEW_WIDTH = 800;
+window.VIEW_HEIGHT = 800;
 const canvas: HTMLCanvasElement = document.getElementById('canvas') as HTMLCanvasElement;
-canvas.width = VIEW_WIDTH;
-canvas.height = VIEW_HEIGHT;
+canvas.width = window.VIEW_WIDTH;
+canvas.height = window.VIEW_HEIGHT;
 
+import SunGL from '../lib/SunGL'
 
-
-var ctx=canvas.getContext("2d");
-var obj=ctx.getImageData(0,0,800,800);
-
-console.log(obj.data.length);//2560000= 800*800*4
-for (var i=0;i< obj.data.length; i++) {
-    obj.data[0+4*i]=Math.floor(Math.random()*255)
-    obj.data[1+4*i]=Math.floor(Math.random()*255)
-    obj.data[2+4*i]=Math.floor(Math.random()*255)
-    obj.data[3+4*i]=Math.floor(Math.random()*255)
-}
-ctx.putImageData(obj,0,0)
+const gl = new SunGL(canvas);
+gl.setAll()
+gl.draw()
+// gl.clear()

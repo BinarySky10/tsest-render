@@ -33,6 +33,8 @@ canvas.height = window.VIEW_HEIGHT;
 import SunGL from '../lib/SunGL'
 
 const gl = new SunGL(canvas);
-gl.setAll()
+// gl.setAll()
+gl.setPixel(400,400)
+
 gl.draw()
 // gl.clear()

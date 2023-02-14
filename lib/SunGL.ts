@@ -7,11 +7,9 @@ export default class SunGL{
     this.canvas = canvas
     this.context = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.imageData = this.context.getImageData(0, 0, 800, 800);
-    // this.buffer = this.imageData.data
   }
   clear() {
     const data = this.imageData.data
-    // console.log(obj.data.length);//2560000= 800*800*4
     for (var i=0;i< data.length; i++) {
         data[0+4*i]=Math.floor(255)
         data[1+4*i]=Math.floor(255)
@@ -29,6 +27,9 @@ export default class SunGL{
     this.imageData.data[y*ys*4 + 4*x + 1 ] = Math.floor(0)
     this.imageData.data[y*ys*4 + 4*x + 2 ] = Math.floor(0)
     this.imageData.data[y*ys*4 + 4*x + 3 ] = Math.floor(255)
+  }
+  setLine(start, end) {
+    
   }
   setAll() {
     for (let y = 0; y < 400; y++) {

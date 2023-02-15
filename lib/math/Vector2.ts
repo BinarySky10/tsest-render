@@ -18,25 +18,25 @@ export class Vector2 {
 	set height(value) {
 		this.y = value;
 	}
-	set(x, y) {
+	set(x:number, y:number) {
 		this.x = x;
 		this.y = y;
 		return this;
 	}
-	setScalar(scalar) {
+	setScalar(scalar:number) {
 		this.x = scalar;
 		this.y = scalar;
 		return this;
 	}
-	setX(x) {
+	setX(x:number) {
 		this.x = x;
 		return this;
 	}
-	setY(y) {
+	setY(y:number) {
 		this.y = y;
 		return this;
 	}
-	setComponent(index, value) {
+	setComponent(index:number, value:number) {
 		switch (index) {
 			case 0: this.x = value; break;
 			case 1: this.y = value; break;
@@ -44,7 +44,7 @@ export class Vector2 {
 		}
 		return this;
 	}
-	getComponent(index) {
+	getComponent(index:number) {
 		switch (index) {
 			case 0: return this.x;
 			case 1: return this.y;
@@ -54,62 +54,62 @@ export class Vector2 {
 	clone() {
 		return new Vector2(this.x, this.y);
 	}
-	copy(v) {
+	copy(v:Vector2) {
 		this.x = v.x;
 		this.y = v.y;
 		return this;
 	}
-	add(v) {
+	add(v:Vector2) {
 		this.x += v.x;
 		this.y += v.y;
 		return this;
 	}
-	addScalar(s) {
+	addScalar(s:number) {
 		this.x += s;
 		this.y += s;
 		return this;
 	}
-	addVectors(a, b) {
+	addVectors(a:Vector2, b:Vector2) {
 		this.x = a.x + b.x;
 		this.y = a.y + b.y;
 		return this;
 	}
-	addScaledVector(v, s) {
+	addScaledVector(v:Vector2, s:number) {
 		this.x += v.x * s;
 		this.y += v.y * s;
 		return this;
 	}
-	sub(v) {
+	sub(v:Vector2) {
 		this.x -= v.x;
 		this.y -= v.y;
 		return this;
 	}
-	subScalar(s) {
+	subScalar(s:number) {
 		this.x -= s;
 		this.y -= s;
 		return this;
 	}
-	subVectors(a, b) {
+	subVectors(a:Vector2, b:Vector2) {
 		this.x = a.x - b.x;
 		this.y = a.y - b.y;
 		return this;
 	}
-	multiply(v) {
+	multiply(v:Vector2) {
 		this.x *= v.x;
 		this.y *= v.y;
 		return this;
 	}
-	multiplyScalar(scalar) {
+	multiplyScalar(scalar:number) {
 		this.x *= scalar;
 		this.y *= scalar;
 		return this;
 	}
-	divide(v) {
+	divide(v:Vector2) {
 		this.x /= v.x;
 		this.y /= v.y;
 		return this;
 	}
-	divideScalar(scalar) {
+	divideScalar(scalar:number) {
 		return this.multiplyScalar(1 / scalar);
 	}
 	applyMatrix3(m) {
@@ -119,12 +119,12 @@ export class Vector2 {
 		this.y = e[1] * x + e[4] * y + e[7];
 		return this;
 	}
-	min(v) {
+	min(v:Vector2) {
 		this.x = Math.min(this.x, v.x);
 		this.y = Math.min(this.y, v.y);
 		return this;
 	}
-	max(v) {
+	max(v:Vector2) {
 		this.x = Math.max(this.x, v.x);
 		this.y = Math.max(this.y, v.y);
 		return this;

@@ -22,19 +22,7 @@ let triangle = new Triangle(new Vector2(1,  1), new Vector2(400,  700) , new Vec
 
 triangle.draw(gl)
 
-// let triangle = new Triangle(
-//   new Vector2(20, 0),
-//   new Vector2(400, 0),
-//   new Vector2(20, 100))
 
-// triangle.draw(gl)
-
-// let triangle = new Triangle(
-//   new Vector2(0, 100),
-//   new Vector2(100, 100),
-//   new Vector2(100, 0))
-
-// triangle.draw(gl)
 
 gl.draw()
 // gl.clear()

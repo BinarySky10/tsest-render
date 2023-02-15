@@ -18,9 +18,9 @@ const gl = new SunGL(canvas);
 // let line = new Line(new Vector2(1,  1), new Vector2(400,  700) )
 // line.draw(gl)
 //画三角形框
-// let triangle = new Triangle(new Vector2(1,  1), new Vector2(400,  700) , new Vector2(700,  500) )
+let triangle = new Triangle(new Vector2(1,  1), new Vector2(400,  700) , new Vector2(700,  500) )
 
-// triangle.draw(gl)
+triangle.draw(gl)
 
 // let triangle = new Triangle(
 //   new Vector2(20, 0),
@@ -29,12 +29,12 @@ const gl = new SunGL(canvas);
 
 // triangle.draw(gl)
 
-let triangle = new Triangle(
-  new Vector2(0, 100),
-  new Vector2(100, 100),
-  new Vector2(100, 0))
+// let triangle = new Triangle(
+//   new Vector2(0, 100),
+//   new Vector2(100, 100),
+//   new Vector2(100, 0))
 
-triangle.draw(gl)
+// triangle.draw(gl)
 
 gl.draw()
 // gl.clear()

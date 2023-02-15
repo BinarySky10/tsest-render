@@ -102,7 +102,7 @@ export default class Triangle{
       //倒三角
       const tmp = computeTopFlatTrangle(array[0], array[1], array[2])
       this._pixels.push(...tmp)
-    }else {
+    } else {
       // array[1]就是中点
       //2. 确定中点后,做一条水平的线,确定线在对边上交点
       const b = array[0] //低点
@@ -115,8 +115,10 @@ export default class Triangle{
       const m0 = new Vector2(0, 0)
       m0.lerpVectors(b, t, alpha)
 
-      // computeBottomFlatTrangle()
-      // computeTopFlatTrangle()
+      const tmp1 = computeBottomFlatTrangle(t, m, m0)
+      this._pixels.push(...tmp1)
+      const tmp2 = computeTopFlatTrangle(b, m, m0)
+      this._pixels.push( ...tmp2)
       // console.log(m0)
     }
   }

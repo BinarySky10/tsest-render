@@ -1,7 +1,7 @@
 //https://github.com/mrdoob/three.js/blob/dev/src/math/Vector2.js
-export class Vector22 {
-	private x: number
-	private y: number
+export class Vector2 {
+	public x: number
+	public y: number
 	constructor(x = 0, y = 0) {
 		this.x = x;
 		this.y = y;
@@ -253,4 +253,3 @@ export class Vector22 {
 
 }
 
-export { Vector2 };

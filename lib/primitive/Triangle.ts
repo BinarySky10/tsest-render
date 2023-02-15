@@ -1,4 +1,4 @@
-import { Vector2 } from '../types'
+import { Vector2 } from '../math/Vector2'
 import { computeLinePixels } from '../tools/computeLinePixels'
 import SunGL from '../SunGL'
 export default class Triangle{

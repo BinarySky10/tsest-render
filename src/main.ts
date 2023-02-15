@@ -7,20 +7,19 @@ canvas.width = window.VIEW_WIDTH;
 canvas.height = window.VIEW_HEIGHT;
 
 import SunGL from '../lib/SunGL'
+import { Vector2 } from '../lib/math/Vector2'
 import Line from '../lib/primitive/Line'
 import Triangle from '../lib/primitive/Triangle'
 const gl = new SunGL(canvas);
 // gl.setAll()
 // gl.setPixel(200,400)
 
-//画线
-let line = new Line({ x: 1, y: 1 }, { x: 400, y: 700 })
-line.draw(gl)
+// //画线
+// let line = new Line(new Vector2(1,  1), new Vector2(400,  700) )
+// line.draw(gl)
 //画三角形框
-let triangle = new Triangle({ x: 1, y: 1 }, { x: 400, y: 700 }, { x: 700, y: 500 } )
+let triangle = new Triangle(new Vector2(1,  1), new Vector2(400,  700) , new Vector2(700,  500) )
 triangle.draw(gl)
 
 gl.draw()
-import { Vector22 } from '../lib/math/vector2'
-console.log(new Vector22(1,2))
 // gl.clear()

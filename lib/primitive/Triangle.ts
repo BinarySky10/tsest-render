@@ -59,7 +59,7 @@ export default class Triangle{
       //     /    \
       //2(3)--------3(2)
       // debugger
-      for (let y = p2.y; y < p1.y; y++) {
+      for (let y = p2.y; y <= p1.y; y++) {
         
         const alpha = (y - p2.y) * 1.0 / (p1.y - p2.y)
         const tmp1 = new Vector2(0, 0)
@@ -68,8 +68,6 @@ export default class Triangle{
         tmp2.lerpVectors(p3, p1, alpha)
         const thepixels = computeLinePixels(tmp1, tmp2)
         pixels.push(...thepixels)
-        // console.log('y', y);
-        // console.log('pixels', thepixels)
       }
       return pixels
     }
@@ -79,6 +77,18 @@ export default class Triangle{
       //     \  /
       //      \/
       //      1
+      const pixels: Array<Vector2> = []
+      for (let y = p1.y; y <= p2.y; y++) {
+        
+        const alpha = (y - p1.y) * 1.0 / (p2.y - p1.y)
+        const tmp1 = new Vector2(0, 0)
+        tmp1.lerpVectors(p1, p2, alpha)
+        const tmp2 = new Vector2(0, 0)
+        tmp2.lerpVectors(p1, p3, alpha)
+        const thepixels = computeLinePixels(tmp1, tmp2)
+        pixels.push(...thepixels)
+      }
+      return pixels
     }
     //扫描线法
     //1.计算三点中y坐标为中间的点, 做一条水平线 分割为上三角和下三角
@@ -88,9 +98,10 @@ export default class Triangle{
       //上三角
       const tmp = computeBottomFlatTrangle(array[2], array[0], array[1])
       this._pixels.push(...tmp)
-    } else if (array[1].y ===array[2].y) {
+    } else if (array[1].y === array[2].y) {
       //倒三角
-
+      const tmp = computeTopFlatTrangle(array[0], array[1], array[2])
+      this._pixels.push(...tmp)
     }else {
       // array[1]就是中点
       //2. 确定中点后,做一条水平的线,确定线在对边上交点
@@ -114,7 +125,6 @@ export default class Triangle{
   }
   draw(gl:SunGL) {
     this.pixels.forEach(item => {
-      // console.log(item)
       gl.setPixel(item.x,item.y)
     })
   }

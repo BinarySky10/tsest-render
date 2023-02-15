@@ -22,10 +22,17 @@ const gl = new SunGL(canvas);
 
 // triangle.draw(gl)
 
+// let triangle = new Triangle(
+//   new Vector2(20, 0),
+//   new Vector2(400, 0),
+//   new Vector2(20, 100))
+
+// triangle.draw(gl)
+
 let triangle = new Triangle(
-  new Vector2(20, 0),
-  new Vector2(32, 0),
-  new Vector2(20, 100))
+  new Vector2(0, 100),
+  new Vector2(100, 100),
+  new Vector2(100, 0))
 
 triangle.draw(gl)
 

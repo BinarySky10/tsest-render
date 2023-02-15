@@ -20,7 +20,10 @@ export default class SunGL{
     }
     this.context.putImageData(this.imageData,0,0)
   }
-  setPixel(x:number,y:number) {
+  setPixel(x: number, y: number) {
+    console.log(x,y)
+    // x = parseInt((x).toFixed())
+    // x = parseInt((y).toFixed())
     // console.log(x,y)
     const xs = this.imageData.width//800
     const ys = this.imageData.height//400

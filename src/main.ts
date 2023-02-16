@@ -21,15 +21,15 @@ const gl = new SunGL(canvas);
 // let line = new Line(new Vector2(1,  1), new Vector2(400,  700) )
 // line.draw(gl)
 const v1 = new Vertex(
-  new Vector3(1, 1, 0),
+  new Vector3(600, 600, 0),
   new Vector4(255,0,0,255)
 )
 const v2 = new Vertex(
-  new Vector3(400, 700, 0),
+  new Vector3(200, 600, 0),
   new Vector4(0,255,0,255)
 )
 const v3 = new Vertex(
-  new Vector3(700, 500, 0),
+  new Vector3(700, 200, 0),
   new Vector4(0,0,255,255)
 )
 //画三角形框

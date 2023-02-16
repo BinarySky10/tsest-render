@@ -15,12 +15,12 @@ const gl = new SunGL(canvas);
 // gl.setPixel(200,400)
 
 // //画线
-let line = new Line(new Vector2(1,  1), new Vector2(400,  700) )
-line.draw(gl)
+// let line = new Line(new Vector2(1,  1), new Vector2(400,  700) )
+// line.draw(gl)
 //画三角形框
-// let triangle = new Triangle(new Vector2(1,  1), new Vector2(400,  700) , new Vector2(700,  500) )
+let triangle = new Triangle(new Vector2(1,  1), new Vector2(400,  700) , new Vector2(700,  500) )
 
-// triangle.draw(gl)
+triangle.draw(gl)
 
 
 

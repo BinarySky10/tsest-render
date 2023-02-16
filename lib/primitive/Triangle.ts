@@ -1,10 +1,32 @@
 import { Vector2 } from '../math/Vector2'
+import { Vector3 } from '../math/Vector3'
+import {getBarycoord} from '../algorithm/getBarycoord'
 import { computeLinePixels } from '../tools/computeLinePixels'
 import SunGL from '../SunGL'
 export enum TRIANGLE_MODE{
   LINE= 1,
   FILL1 = 2,
   FILL2 = 3
+}
+function getBoundingBox2(arr: Array<Vector2>): Array<Vector2> {
+  const minPoint = arr[0].clone()
+  const maxPoint = arr[0].clone()
+  arr.forEach(item => {
+    if (item.x < minPoint.x) {
+      minPoint.x = item.x
+    }
+    if (item.x > maxPoint.x) {
+      maxPoint.x = item.x
+    }
+    if (item.y < minPoint.y) {
+      minPoint.y = item.y
+    }
+    if (item.y > maxPoint.y) {
+      maxPoint.y = item.y
+    }
+  })
+  return [minPoint, maxPoint]
+  
 }
 export default class Triangle{
   private p1: Vector2
@@ -18,7 +40,7 @@ export default class Triangle{
     this.p2 = p2
     this.p3 = p3
     this._pixels = []
-    this.mode = TRIANGLE_MODE.FILL1
+    this.mode = TRIANGLE_MODE.FILL2
     this.computePixels()
   }
   public get pixels(): Array<Vector2> {
@@ -124,6 +146,26 @@ export default class Triangle{
   }
 
   private computePixelsByFill2() {
+    //重心 坐标绘制三角形
+    //1.计算三角形最小包围盒
+    const [minPoint, maxPoint] = getBoundingBox2([this.p2, this.p3, this.p1])
+    //2. 遍历最小包围盒三角形进行绘制
+    for (let x = minPoint.x; x < maxPoint.x; x++) {
+      for (let y = minPoint.y; y < maxPoint.y; y++) {
+        const target = new Vector3(-2 , -1,-1)
+        getBarycoord(
+          new Vector3(x, y, 0),
+          new Vector3(this.p1.x, this.p1.y, 0),
+          new Vector3(this.p2.x, this.p2.y, 0),
+          new Vector3(this.p3.x, this.p3.y, 0),
+          target
+        )
+        if (target.x >= 0 && target.y >= 0 && target.z >= 0) {
+          this._pixels.push(new Vector2(x, y))
+        }
+
+      }
+    }
   }
   draw(gl:SunGL) {
     this.pixels.forEach(item => {

@@ -1,6 +1,7 @@
 import { Vector2 } from '../math/Vector2'
 import { Vector3 } from '../math/Vector3'
-import {getBarycoord} from '../algorithm/getBarycoord'
+import { getBarycoord } from '../algorithm/getBarycoord'
+import Vertex from '../primitive/Vertex'
 import { computeLinePixels } from '../tools/computeLinePixels'
 import SunGL from '../SunGL'
 export enum TRIANGLE_MODE{

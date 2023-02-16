@@ -1,4 +1,5 @@
 import { Vector2 } from '../math/Vector2'
+import { Vector4 } from "../math/Vector4"
 import SunGL from '../SunGL'
 import { computeLinePixels } from '../tools/computeLinePixels'
 export default class Line{
@@ -17,7 +18,7 @@ export default class Line{
   
   draw(gl:SunGL) {
     this.pixels.forEach(item => {
-      gl.setPixel(item.x,item.y)
+      gl.setPixel(item.x,item.y, new Vector4(Math.floor( 0), Math.floor(0), Math.floor(255),Math.floor(255)))
     })
   }
 }

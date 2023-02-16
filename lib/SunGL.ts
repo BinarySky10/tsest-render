@@ -1,4 +1,4 @@
-
+import { Vector4 } from "./math/Vector4"
 
 export default class SunGL{
   private canvas: HTMLCanvasElement
@@ -20,25 +20,25 @@ export default class SunGL{
     }
     this.context.putImageData(this.imageData,0,0)
   }
-  setPixel(x: number, y: number) {
+  setPixel(x: number, y: number, color:Vector4) {
     x = parseInt((x).toFixed())
     y = parseInt((y).toFixed())
     const xs = this.imageData.width//800
     const ys = this.imageData.height//400
 
-    this.imageData.data[y*ys*4 + 4*x + 0 ] = Math.floor( 255)
-    this.imageData.data[y*ys*4 + 4*x + 1 ] = Math.floor(0)
-    this.imageData.data[y*ys*4 + 4*x + 2 ] = Math.floor(0)
-    this.imageData.data[y*ys*4 + 4*x + 3 ] = Math.floor(255)
+    this.imageData.data[y*ys*4 + 4*x + 0 ] = color.x
+    this.imageData.data[y*ys*4 + 4*x + 1 ] = color.y
+    this.imageData.data[y*ys*4 + 4*x + 2 ] = color.z
+    this.imageData.data[y*ys*4 + 4*x + 3 ] = color.w
   }
   
-  setAll() {
-    for (let y = 0; y < 400; y++) {
-      for (let x = 0; x < 400; x++) {
-        this.setPixel(x, y)
-      }
-    }
-  }
+  // setAll() {
+  //   for (let y = 0; y < 400; y++) {
+  //     for (let x = 0; x < 400; x++) {
+  //       this.setPixel(x, y)
+  //     }
+  //   }
+  // }
   draw() {
     this.context.putImageData(this.imageData,0,0)
   }

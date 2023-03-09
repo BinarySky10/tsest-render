@@ -113,7 +113,7 @@ function getViewPortMatrix(x:number =window.VIEW_WIDTH, y:number =window.VIEW_HE
   )
   return matrix
 }
-class OrthCamera {
+export class OrthCamera {
   //e
   position: Vector3
   //gaze

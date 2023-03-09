@@ -44,13 +44,13 @@ export default class Triangle{
     this.p3 = p3
     this._pixels = []
     this.mode = TRIANGLE_MODE.FILL2
-    this.computePixels()
+    // this.computePixels()
   }
   public get pixels(): Array<Vertex> {
     return this._pixels;
   }
   
-  private computePixels() {
+  public computePixels() {
     switch (this.mode) {
       case TRIANGLE_MODE.LINE:
           // this.computePixelsByLine()

@@ -73,7 +73,7 @@ const camera = new OrthCamera(
   new Vector3(0, 0, 1),
   new Vector3(0, 0, -1),
 )
-const renderer = new Renderer()
+const renderer = new Renderer(scene, camera)
 renderer.render()
 
 

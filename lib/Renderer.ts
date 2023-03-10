@@ -34,8 +34,10 @@ export default class Renderer{
       //片元着色器-----逐片元处理(类似于片元着色器): 根据映射到屏幕空间的三角形的点进行插值, 插值的过程中对每个片元进行着色抛弃(1.顶点色插值, 对光栅化像素着色时, 像素颜色由三角形顶点插值求得, 2.结合uv从纹理取色3.2的进一步, 结合其他属性以及光的交互实现不同光照模型 取色  4.根据世界坐标取色等)
     })
   }
-  perVertex(v:Vertex):Vertex {
-    return v
+  perVertex(v: Vertex): Vertex {
+    const vv = v.clone()
+    // vv.position
+    return vv
   }
   perFragment() {
     

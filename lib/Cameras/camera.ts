@@ -7,10 +7,13 @@ function getViewMatrix(position: Vector3, lookat: Vector3, up: Vector3): Matrix4
   //1.计算 uvw轴方向
   //w轴方向(相当于z轴)为相机注视方向(g)的反方向(约定俗称)
   const w: Vector3 = lookat.clone().negate().normalize()
+  
   //u轴方向(相当于x轴)为上方向(t)和w轴方向的垂直向量(由txw 获得),
-  const u: Vector3 = tmpVector.crossVectors(up, w).normalize()
+  const u: Vector3 = tmpVector.crossVectors(up, w).normalize().clone()
+  
   //v轴方向由(由wxu 获得)
-  const v: Vector3 = tmpVector.crossVectors(w, u).normalize()
+  const v: Vector3 = tmpVector.crossVectors(w, u).normalize().clone()
+  
   //2.代入矩阵
   //M视图=
   // xu yu zu -xe

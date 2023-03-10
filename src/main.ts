@@ -30,15 +30,15 @@ const gl = new SunGL(canvas);
 
 {
   const v1 = new Vertex(
-    new Vector3(600, 600, 0),
+    new Vector4(600, 600, 0,1),
     new Vector4(255,0,0,255)
   )
   const v2 = new Vertex(
-    new Vector3(200, 600, 0),
+    new Vector4(200, 600, 0,1),
     new Vector4(0,255,0,255)
   )
   const v3 = new Vertex(
-    new Vector3(700, 200, 0),
+    new Vector4(700, 200, 0,1),
     new Vector4(0,0,255,255)
   )
   //画三角形框
@@ -49,15 +49,15 @@ const gl = new SunGL(canvas);
 
 const scene = new Scene()
 const v1 = new Vertex(
-  new Vector3(600, 600, 0),
+  new Vector4(600, 600, 0,1),
   new Vector4(255,0,0,255)
 )
 const v2 = new Vertex(
-  new Vector3(200, 600, 0),
+  new Vector4(200, 600, 0,1),
   new Vector4(0,255,0,255)
 )
 const v3 = new Vertex(
-  new Vector3(700, 200, 0),
+  new Vector4(700, 200, 0,1),
   new Vector4(0,0,255,255)
 )
 

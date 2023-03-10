@@ -14,7 +14,7 @@ export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex, perFrag
       const target = new Vector3(-2, -1, -1)
       //计算重心坐标
       getBarycoord(
-        new Vector3(x, y, 0),
+        new Vector4(x, y, 0,1),
         p1.position,//z=0
         p2.position,//z=0
         p3.position,//z=0
@@ -24,10 +24,11 @@ export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex, perFrag
       const j =  target.y
       const k =  target.z
       if (i >= 0 && j >= 0 && k >= 0) {
-        const tmpVertex = new Vertex(new Vector3(), new Vector4())
+        const tmpVertex = new Vertex(new Vector4(), new Vector4())
         tmpVertex.position.x = x
         tmpVertex.position.y = y
         tmpVertex.position.z = 0
+        tmpVertex.position.w = 1
         //顶点颜色插值
         const p1color = p1.color.clone().multiplyScalar(i)
         const p2color = p2.color.clone().multiplyScalar(j)

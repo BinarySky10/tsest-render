@@ -1,10 +1,11 @@
 // calculate barycentric coordinates 计算重心坐标
 // based on: http://www.blackpawn.com/texts/pointinpoly/default.html
 import { Vector3 } from "../math/Vector3";
-export function getBarycoord(point: Vector3, a: Vector3, b: Vector3, c: Vector3, target: Vector3) {
-  const _v0 = new Vector3()
-  const _v1 = new Vector3()
-  const _v2 = new Vector3()
+import { Vector4 } from "../math/Vector4";
+export function getBarycoord(point: Vector4, a: Vector4, b: Vector4, c: Vector4, target: Vector3) {
+  const _v0 = new Vector4()
+  const _v1 = new Vector4()
+  const _v2 = new Vector4()
   _v0.subVectors(c, a);
   _v1.subVectors(b, a);
   _v2.subVectors(point, a);

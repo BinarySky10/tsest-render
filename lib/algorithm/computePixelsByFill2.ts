@@ -1,0 +1,43 @@
+import Vertex from '../primitive/Vertex'
+import { Vector3 } from '../math/Vector3'
+import { Vector4 } from '../math/Vector4'
+import { getBarycoord } from './getBarycoord'
+import { getBoundingBox2 } from './getBoundingBox2'
+export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex): Array<Vertex> {
+  const _pixels:Array<Vertex> = []
+  //重心 坐标绘制三角形
+  //1.计算三角形最小包围盒
+  const [minPoint, maxPoint] = getBoundingBox2([p1,p2, p3 ])
+  //2. 遍历最小包围盒三角形进行绘制
+  for (let x = minPoint.x; x < maxPoint.x; x++) {
+    for (let y = minPoint.y; y < maxPoint.y; y++) {
+      const target = new Vector3(-2, -1, -1)
+      
+      getBarycoord(
+        new Vector3(x, y, 0),
+        p1.position,//z=0
+        p2.position,//z=0
+        p3.position,//z=0
+        target
+      )
+      const i =  target.x
+      const j =  target.y
+      const k =  target.z
+      if (i >= 0 && j >= 0 && k >= 0) {
+        const tmpVertex = new Vertex(new Vector3(), new Vector4())
+        tmpVertex.position.x = x
+        tmpVertex.position.y = y
+        tmpVertex.position.z = 0
+        const p1color = p1.color.clone().multiplyScalar(i)
+        const p2color = p2.color.clone().multiplyScalar(j)
+        const p3color = p3.color.clone().multiplyScalar(k)
+        const tmpcolor = new Vector4()
+        tmpVertex.color = tmpcolor.add(p1color).add(p2color).add(p3color)
+        
+        _pixels.push(tmpVertex)
+      }
+
+    }
+  }
+  return _pixels
+}

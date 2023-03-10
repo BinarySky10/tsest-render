@@ -3,7 +3,7 @@ import { Vector3 } from '../math/Vector3'
 import { Vector4 } from '../math/Vector4'
 import { getBarycoord } from './getBarycoord'
 import { getBoundingBox2 } from './getBoundingBox2'
-export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex): Array<Vertex> {
+export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex, perFragment?:()=> void): Array<Vertex> {
   const _pixels:Array<Vertex> = []
   //重心 坐标绘制三角形
   //1.计算三角形最小包围盒
@@ -12,7 +12,7 @@ export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex): Array<
   for (let x = minPoint.x; x < maxPoint.x; x++) {
     for (let y = minPoint.y; y < maxPoint.y; y++) {
       const target = new Vector3(-2, -1, -1)
-      
+      //计算重心坐标
       getBarycoord(
         new Vector3(x, y, 0),
         p1.position,//z=0
@@ -28,6 +28,7 @@ export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex): Array<
         tmpVertex.position.x = x
         tmpVertex.position.y = y
         tmpVertex.position.z = 0
+        //顶点颜色插值
         const p1color = p1.color.clone().multiplyScalar(i)
         const p2color = p2.color.clone().multiplyScalar(j)
         const p3color = p3.color.clone().multiplyScalar(k)

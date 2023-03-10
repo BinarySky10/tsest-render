@@ -1,6 +1,7 @@
 import { OrthCamera } from './Cameras/camera';
 import Scene from './Scene'
 import Vertex from '../lib/primitive/Vertex'
+import {computePixelsByFill2} from './algorithm/computePixelsByFill2'
 export default class Renderer{
   scene: Scene
   camera:OrthCamera
@@ -23,6 +24,9 @@ export default class Renderer{
       })
       //TODO
       //逐三角形光栅化(包括逐片元处理)
+      const [sv1, sv2, sv3] = screenVertexes
+      // 
+      // const pixels = computePixelsByFill2(sv1, sv2, sv3)
       // let triangle = new Triangle(v1, v2, v3)
       // triangle.computePixels()
       // triangle.draw(gl)  //setPixel

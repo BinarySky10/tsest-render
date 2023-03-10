@@ -75,6 +75,7 @@ function getOrthProjectMatrix(width: number, height: number, near: number, far:n
   const n42 = 0
   const n43 = 0
   const n44 = 1
+  
   matrix.set(
     n11, n12, n13, n14,
     n21, n22, n23, n24,
@@ -97,7 +98,8 @@ function getViewPortMatrix(x:number =window.VIEW_WIDTH, y:number =window.VIEW_HE
   const n13 = 0
   const n14 = (x-1)/2.0
   const n21 = 0
-  const n22 = y/2.0
+  //y轴反转
+  const n22 = -y/2.0
   const n23 = 0
   const n24 = (y -1)/2.0
   const n31 = 0
@@ -144,7 +146,7 @@ export class OrthCamera {
     this.width = 800.0
     this.height = 800.0
     this.near = 0
-    this.far = 800.0
+    this.far = -800.0
     this.projectMatrix = getOrthProjectMatrix(this.width,this.height, this.near,this.far)
     this.viewPortMatrix = getViewPortMatrix()
   }

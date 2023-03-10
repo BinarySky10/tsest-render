@@ -28,36 +28,36 @@ const gl = new SunGL(canvas);
 
 
 
-{
-  const v1 = new Vertex(
-    new Vector4(600, 600, 0,1),
-    new Vector4(255,0,0,255)
-  )
-  const v2 = new Vertex(
-    new Vector4(200, 600, 0,1),
-    new Vector4(0,255,0,255)
-  )
-  const v3 = new Vertex(
-    new Vector4(700, 200, 0,1),
-    new Vector4(0,0,255,255)
-  )
-  //画三角形框
-  let triangle = new Triangle(v1, v2, v3)
-  triangle.computePixels()
-  triangle.draw(gl)
-}
+// {
+//   const v1 = new Vertex(
+//     new Vector4(600, 600, 0,1),
+//     new Vector4(255,0,0,255)
+//   )
+//   const v2 = new Vertex(
+//     new Vector4(200, 600, 0,1),
+//     new Vector4(0,255,0,255)
+//   )
+//   const v3 = new Vertex(
+//     new Vector4(700, 200, 0,1),
+//     new Vector4(0,0,255,255)
+//   )
+//   //画三角形框
+//   let triangle = new Triangle(v1, v2, v3)
+//   triangle.computePixels()
+//   triangle.draw(gl)
+// }
 
 const scene = new Scene()
 const v1 = new Vertex(
-  new Vector4(600, 600, 0,1),
+  new Vector4(0, 0, 0,1),
   new Vector4(255,0,0,255)
 )
 const v2 = new Vertex(
-  new Vector4(200, 600, 0,1),
+  new Vector4(0, 200, 0,1),
   new Vector4(0,255,0,255)
 )
 const v3 = new Vertex(
-  new Vector4(700, 200, 0,1),
+  new Vector4(200, 0, 0,1),
   new Vector4(0,0,255,255)
 )
 
@@ -71,11 +71,18 @@ const aTriangle:RenderObject ={
 scene.add(aTriangle)
 const camera = new OrthCamera(
   new Vector3(0, 0, 1),
-  new Vector3(0, 0, -1),
+  new Vector3(0, 1, -1),
 )
-const renderer = new Renderer(scene, camera)
-renderer.render()
+const renderer = new Renderer(scene, camera, gl)
+window.angle = 0
+let d = 0.01
+function loop() {
+  renderer.render()
+  window.angle+=d
+  requestAnimationFrame(() => {
+    loop()
+  })
+}
 
-
-gl.draw()
+loop()
 // gl.clear()

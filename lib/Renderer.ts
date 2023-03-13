@@ -48,34 +48,44 @@ export default class Renderer{
   render() {
     this.gl.clear()
     this.scene.object.forEach(item => {
-      const [v1, v2, v3] = item.vertexes
       //TODO  
-      //顶点着色器-----逐顶点处理(类似于顶点着色器):将顶点进行MVP变换到NDC空间, 并将color normal uv等顶点属性传递下去
+      //1.顶点着色器-----逐顶点处理(类似于顶点着色器):将顶点进行MVP变换到NDC空间, 并将color normal uv等顶点属性传递下去
       let ndcVertexes = item.vertexes.map(v => {
         return this.perVertex(v)
       })
       
       
-      //视口变换: 将ndc空间映射到屏幕空间
+      //1.5.视口变换: 将ndc空间映射到屏幕空间
       let screenVertexes = ndcVertexes.map(v => {
         const vv = v.clone()
         vv.position.applyMatrix4(this.camera.viewPortMatrix)
         // vv.position.y =-vv.position.y
         return vv
       })
-      console.log(screenVertexes)
+
       //TODO
-      //逐三角形光栅化(包括逐片元处理)
-      const [sv1, sv2, sv3] = screenVertexes
-      // 
-      // const pixels = computePixelsByFill2(sv1, sv2, sv3)
-      let triangle = new Triangle(sv1, sv2, sv3)
-      triangle.computePixels()
-      triangle.draw(this.gl)  //setPixel
-      //TODO 
-      //片元着色器-----逐片元处理(类似于片元着色器): 根据映射到屏幕空间的三角形的点进行插值, 插值的过程中对每个片元进行着色抛弃(1.顶点色插值, 对光栅化像素着色时, 像素颜色由三角形顶点插值求得, 2.结合uv从纹理取色3.2的进一步, 结合其他属性以及光的交互实现不同光照模型 取色  4.根据世界坐标取色等)
+      //2.逐片元光栅化(包括逐片元处理)
+      //2.01逐三角形处理三角形
+      const indices = item.indices
+      
+      indices.forEach(threeIndex => {
+        const [i1, i2, i3] = threeIndex
+        const sv1 = screenVertexes[i1]
+        const sv2 = screenVertexes[i2]
+        const sv3 = screenVertexes[i3]
+        let triangle = new Triangle(sv1, sv2, sv3)
+        triangle.computePixels()
+        triangle.draw(this.gl)  //setPixel
+        //TODO 
+        //片元着色器-----逐片元处理(类似于片元着色器): 根据映射到屏幕空间的三角形的点进行插值, 插值的过程中对每个片元进行着色抛弃(1.顶点色插值, 对光栅化像素着色时, 像素颜色由三角形顶点插值求得, 2.结合uv从纹理取色3.2的进一步, 结合其他属性以及光的交互实现不同光照模型 取色  4.根据世界坐标取色等)
+
+      });
+      
     })
     this.gl.draw()
+  }
+  _pipe() {
+    
   }
   perVertex(v: Vertex): Vertex {
     const vv = v.clone()

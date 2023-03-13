@@ -20,7 +20,7 @@ export default class SunGL{
     }
     this.context.putImageData(this.colorbuffer,0,0)
   }
-  setPixel(x: number, y: number, color:Vector4) {
+  setPixel(x: number, y: number, z:number, color:Vector4) {
     x = parseInt((x).toFixed())
     y = parseInt((y).toFixed())
     const xs = this.colorbuffer.width//800

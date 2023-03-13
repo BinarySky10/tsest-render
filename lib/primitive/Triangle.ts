@@ -48,7 +48,7 @@ export default class Triangle{
   
   draw(gl: SunGL) {
     this.pixels.forEach(item => {
-      gl.setPixel(item.position.x,item.position.y,item.color)
+      gl.setPixel(item.position.x,item.position.y,item.position.z,item.color)
     })
   }
 }

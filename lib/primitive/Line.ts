@@ -18,7 +18,7 @@ export default class Line{
   
   draw(gl:SunGL) {
     this.pixels.forEach(item => {
-      gl.setPixel(item.x,item.y, new Vector4(Math.floor( 0), Math.floor(0), Math.floor(255),Math.floor(255)))
+      gl.setPixel(item.x,item.y, 0 ,new Vector4(Math.floor( 0), Math.floor(0), Math.floor(255),Math.floor(255)))
     })
   }
 }

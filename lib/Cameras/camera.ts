@@ -1,6 +1,7 @@
 import { Matrix4 } from '../math/Matrix4'
 
 import { Vector3 } from '../math/Vector3'
+// 测试
 let tmpVector = new Vector3()
 function getViewMatrix(position: Vector3, lookat: Vector3, up: Vector3): Matrix4 {
   const viewMatrix = new Matrix4()

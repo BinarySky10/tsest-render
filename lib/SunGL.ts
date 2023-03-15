@@ -4,11 +4,13 @@ export default class SunGL{
   private canvas: HTMLCanvasElement
   private context: CanvasRenderingContext2D
   private colorbuffer: ImageData
+  private depthbuffer: ImageData
   // private buffer: Uint8ClampedArray
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas
     this.context = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.colorbuffer = this.context.getImageData(0, 0, 800, 800);
+    this.depthbuffer = this.context.getImageData(0, 0, 800, 800);
   }
   clear() {
     const data = this.colorbuffer.data

@@ -58,24 +58,24 @@ var colorData = [
   0.0, 255.0, 0, 0.0, 255.0, 255.0, 0.0, 0.0, 255.0, 0.0, 0.0, 0.0,
 ];
 // Indices of the vertices
-// var indicesData = [
-//   [0, 1, 2],
-//   // [0, 2, 3], // front
-//   // [0, 3, 4],
-//   // [0, 4, 5], // right
-//   // [0, 5, 6],
-//   // [0, 6, 1], // up
-//   // [1, 6, 7],
-//   [1, 7, 2], // left
-//   // [7, 4, 3],
-//   // [7, 3, 2], // down
-//   // [4, 7, 6],
-//   // [4, 6, 5], // back
-// ];
 var indicesData = [
-  [1, 7, 2],
   [0, 1, 2],
+  [0, 2, 3], // front
+  [0, 3, 4],
+  [0, 4, 5], // right
+  [0, 5, 6],
+  [0, 6, 1], // up
+  [1, 6, 7],
+  [1, 7, 2], // left
+  [7, 4, 3],
+  [7, 3, 2], // down
+  [4, 7, 6],
+  [4, 6, 5], // back
 ];
+// var indicesData = [
+//   [1, 7, 2],
+//   [0, 1, 2],
+// ];
 const aBox: RenderObject = {
   vertexes: [],
   indices: [],
@@ -145,7 +145,7 @@ scene.add(aBox);
 //   new Vector3(0, 0, -1),
 // )
 const camera = new OrthCamera(
-  new Vector3(250, 250, 250),
+  new Vector3(200, 200, 200),
   new Vector3(-1, -1, -1)
 );
 const renderer = new Renderer(scene, camera, gl);

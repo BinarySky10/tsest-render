@@ -4,7 +4,8 @@ export default class SunGL {
   private canvas: HTMLCanvasElement;
   private context: CanvasRenderingContext2D;
   private colorbuffer: ImageData;
-  private depthbuffer: ImageData;
+  // private depthbuffer: ImageData;
+  private depthbufferData: Int16Array;
   public depthTest: boolean;
   public depthMask: boolean;
   // private buffer: Uint8ClampedArray
@@ -12,7 +13,8 @@ export default class SunGL {
     this.canvas = canvas;
     this.context = this.canvas.getContext("2d") as CanvasRenderingContext2D;
     this.colorbuffer = this.context.getImageData(0, 0, 800, 800);
-    this.depthbuffer = this.context.getImageData(0, 0, 800, 800);
+    // this.depthbuffer = this.context.getImageData(0, 0, 800, 800);
+    this.depthbufferData = new Int16Array(800 * 800)
     this.depthTest = true;
     this.depthMask = true;
     this.clearDepth();
@@ -28,13 +30,9 @@ export default class SunGL {
     this.context.putImageData(this.colorbuffer, 0, 0);
   }
   clearDepth() {
-    const data = this.depthbuffer.data;
+    const data = this.depthbufferData;
     for (var i = 0; i < data.length; i++) {
-      //暂时用数字255代表深度的初始化
-      data[0 + 4 * i] = 255;
-      data[1 + 4 * i] = 255;
-      data[2 + 4 * i] = 255;
-      data[3 + 4 * i] = 255;
+      data[i] = -Infinity;
     }
   }
   setPixel(x: number, y: number, z: number, color: Vector4) {
@@ -46,21 +44,14 @@ export default class SunGL {
     // //深度缓冲
     if (this.depthTest) {
       //开启深度测试
-      if (
-        z < this.depthbuffer.data[y * ys * 4 + 4 * x + 0] &&
-        this.depthbuffer.data[y * ys * 4 + 4 * x + 0] !== 255
-      ) {
+      if (z < this.depthbufferData[y * ys + x]) {
         //深度小于已经写入深度 测试不通过
-        // console.log('深度测试生效')
         return;
       }
 
       //开启深度写入
       if (this.depthMask) {
-        this.depthbuffer.data[y * ys * 4 + 4 * x + 0] = z;
-        // this.depthbuffer.data[y*ys*4 + 4*x + 1 ] = z
-        // this.depthbuffer.data[y*ys*4 + 4*x + 2 ] = z
-        // this.depthbuffer.data[y*ys*4 + 4*x + 3 ] = z
+        this.depthbufferData[y * ys + x] = z;
       }
     }
 

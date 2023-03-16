@@ -27,8 +27,14 @@ export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex, perFrag
         const tmpVertex = new Vertex(new Vector4(), new Vector4())
         tmpVertex.position.x = x
         tmpVertex.position.y = y
-        tmpVertex.position.z = 0
         tmpVertex.position.w = 1
+        //深度插值
+        const p1Z = p1.position.z* i
+        const p2Z = p2.position.z* j
+        const p3Z = p3.position.z* k
+        
+        tmpVertex.position.z = p1Z + p2Z + p3Z
+        
         //顶点颜色插值
         const p1color = p1.color.clone().multiplyScalar(i)
         const p2color = p2.color.clone().multiplyScalar(j)

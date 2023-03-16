@@ -62,7 +62,7 @@ export default class Renderer{
         // vv.position.y =-vv.position.y
         return vv
       })
-
+      
       //TODO
       //2.逐片元光栅化(包括逐片元处理)
       //2.01逐三角形处理三角形

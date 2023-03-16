@@ -50,5 +50,6 @@ export default class Triangle{
     this.pixels.forEach(item => {
       gl.setPixel(item.position.x,item.position.y,item.position.z,item.color)
     })
+    
   }
 }

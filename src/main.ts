@@ -48,31 +48,7 @@ const gl = new SunGL(canvas);
 // }
 
 const scene = new Scene()
-const v1 = new Vertex(
-  new Vector4(0, 0, 0, 1),
-  new Vector4(255, 0, 0, 255)
-)
-const v2 = new Vertex(
-  new Vector4(0, 200, 0, 1),
-  new Vector4(0, 255, 0, 255)
-)
-const v3 = new Vertex(
-  new Vector4(200, 0, 0, 1),
-  new Vector4(0, 0, 255, 255)
-)
 
-const v4 = new Vertex(
-  new Vector4(200, 200, -100, 1),
-  new Vector4(128, 0, 0, 255)
-)
-const v5 = new Vertex(
-  new Vector4(100, -200, -100, 1),
-  new Vector4(128, 0, 0, 255)
-)
-const v6 = new Vertex(
-  new Vector4(200, -100, -100, 1),
-  new Vector4(128, 0, 0, 255)
-)
 // var vertexData = [
 //   1.0, 1.0, 1.0,
 //   -1.0, 1.0, 1.0,
@@ -174,7 +150,31 @@ const v6 = new Vertex(
 // aBox.indices.push(...indicesData)
 // scene.add(aBox)
 
+const v1 = new Vertex(
+  new Vector4(0, 0, 0, 1),
+  new Vector4(255, 0, 0, 255)
+)
+const v2 = new Vertex(
+  new Vector4(0, 200, 0, 1),
+  new Vector4(0, 255, 0, 255)
+)
+const v3 = new Vertex(
+  new Vector4(200, 0, 0, 1),
+  new Vector4(0, 0, 255, 255)
+)
 
+const v4 = new Vertex(
+  new Vector4(200, 200, -100, 1),
+  new Vector4(128, 0, 0, 255)
+)
+const v5 = new Vertex(
+  new Vector4(100, -200, -100, 1),
+  new Vector4(128, 0, 0, 255)
+)
+const v6 = new Vertex(
+  new Vector4(200, -100, -100, 1),
+  new Vector4(128, 0, 0, 255)
+)
 const aTriangle: RenderObject = {
   vertexes: [
     v1,
@@ -189,7 +189,7 @@ const aTriangle: RenderObject = {
 scene.add(aTriangle)
 
 const camera = new OrthCamera(
-  new Vector3(0, 0, 800),
+  new Vector3(0, 0, 10000),
   new Vector3(0, 0, -1),
 )
 const renderer = new Renderer(scene, camera, gl)

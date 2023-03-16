@@ -47,6 +47,7 @@ export default class Renderer{
   }
   render() {
     this.gl.clear()
+    this.gl.clearDepth()
     this.scene.object.forEach(item => {
       //TODO  
       //1.顶点着色器-----逐顶点处理(类似于顶点着色器):将顶点进行MVP变换到NDC空间, 并将color normal uv等顶点属性传递下去

@@ -15,22 +15,23 @@ export default class SunGL{
     this.depthbuffer = this.context.getImageData(0, 0, 800, 800);
     this.depthTest = true
     this.depthMask = true
-    // this.clearDepth()
+    this.clearDepth()
   }
   clear() {
     const data = this.colorbuffer.data
     for (var i=0;i< data.length; i++) {
-        data[0+4*i]=Math.floor(255)
-        data[1+4*i]=Math.floor(255)
-        data[2+4*i]=Math.floor(255)
-        data[3+4*i]=Math.floor(255)
+        data[0+4*i]=Math.floor(0)
+        data[1+4*i]=Math.floor(0)
+        data[2+4*i]=Math.floor(0)
+        data[3+4*i]=Math.floor(0)
     }
     this.context.putImageData(this.colorbuffer,0,0)
   }
   clearDepth() {
-    //todo 裁剪 深度 归一化
+    
     const data = this.depthbuffer.data
-    for (var i=0;i< data.length; i++) {
+    for (var i = 0; i < data.length; i++) {
+        //暂时用数字255代表深度的初始化
         data[0+4*i]= 255 
         data[1+4*i]= 255
         data[2+4*i]= 255
@@ -43,23 +44,23 @@ export default class SunGL{
     const xs = this.colorbuffer.width//800
     const ys = this.colorbuffer.height//400
 
-    // // //深度缓冲
-    // if (this.depthTest) {
-    //   //开启深度测试
-    //   debugger
-    //   if (z < this.depthbuffer.data[y*ys*4 + 4*x + 0 ]) {//深度小于已经写入深度 测试不通过
-    //     return 
-    //   }
+    // //深度缓冲
+    if (this.depthTest) {
+      //开启深度测试
+      if (z < this.depthbuffer.data[y*ys*4 + 4*x + 0 ] && this.depthbuffer.data[y*ys*4 + 4*x + 0 ]!== 255) {//深度小于已经写入深度 测试不通过
+        console.log('深度测试生效')
+        return 
+      }
       
-    //   //开启深度写入
-    //   if (this.depthMask) {
-    //     this.depthbuffer.data[y*ys*4 + 4*x + 0 ] = z
-    //     // this.depthbuffer.data[y*ys*4 + 4*x + 1 ] = z
-    //     // this.depthbuffer.data[y*ys*4 + 4*x + 2 ] = z
-    //     // this.depthbuffer.data[y*ys*4 + 4*x + 3 ] = z 
-    //   }
-      
-    // }
+      //开启深度写入
+      if (this.depthMask) {
+        this.depthbuffer.data[y*ys*4 + 4*x + 0 ] = z
+        // this.depthbuffer.data[y*ys*4 + 4*x + 1 ] = z
+        // this.depthbuffer.data[y*ys*4 + 4*x + 2 ] = z
+        // this.depthbuffer.data[y*ys*4 + 4*x + 3 ] = z 
+      }
+    }
+
     //颜色缓冲
     this.colorbuffer.data[y*ys*4 + 4*x + 0 ] = color.x
     this.colorbuffer.data[y*ys*4 + 4*x + 1 ] = color.y

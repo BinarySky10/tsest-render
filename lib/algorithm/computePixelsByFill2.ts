@@ -4,7 +4,7 @@ import { Vector4 } from '../math/Vector4'
 import { getBarycoord } from './getBarycoord'
 import { getBoundingBox2 } from './getBoundingBox2'
 import _ from 'lodash'
-export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex, perFragment?: () => void): Array<Vertex> {
+export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex, getColor: (u: number, v: number) => Vector4): Array<Vertex> {
   const _pixels: Array<Vertex> = []
   //重心 坐标绘制三角形
   //1.计算三角形最小包围盒
@@ -58,11 +58,12 @@ export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex, perFrag
         tmpVertex.position.w = 1
         //深度插值 position.z
         interpolate(tmpVertex, 'position.z')
-        //顶点颜色插值 color
-        interpolate(tmpVertex, 'color')
+
         //uv插值 uv
         interpolate(tmpVertex, 'uv')
-
+        // //顶点颜色插值 color
+        // interpolate(tmpVertex, 'color')
+        tmpVertex.color = getColor(tmpVertex.uv?.x, tmpVertex.uv?.y)
         _pixels.push(tmpVertex)
       }
 

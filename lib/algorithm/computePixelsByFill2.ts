@@ -3,7 +3,7 @@ import { Vector3 } from '../math/Vector3'
 import { Vector4 } from '../math/Vector4'
 import { getBarycoord } from './getBarycoord'
 import { getBoundingBox2 } from './getBoundingBox2'
-
+import _ from 'lodash'
 export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex, perFragment?: () => void): Array<Vertex> {
   const _pixels: Array<Vertex> = []
   //重心 坐标绘制三角形
@@ -32,29 +32,36 @@ export function computePixelsByFill2(p1: Vertex, p2: Vertex, p3: Vertex, perFrag
         // i
         // j
         // k
+        //todo 类型判断
+        let value1 = _.get(p1, key)
+        let value2 = _.get(p2, key)
+        let value3 = _.get(p3, key)
 
+        if (typeof value1 == 'number') {
+          //数字
+          const z = value1 * i + value2 * j + value3 * k
+          _.set(targetVertex, key, z)
+        } else {
+          //向量
+          const p1Value = value1.clone().multiplyScalar(i)
+          const p2Value = value2.clone().multiplyScalar(j)
+          const p3Value = value3.clone().multiplyScalar(k)
+          const targetValue = p1Value.clone().add(p2Value).add(p3Value)
+          _.set(targetVertex, key, targetValue)
+
+        }
       }
       if (i >= 0 && j >= 0 && k >= 0) {
         const tmpVertex = new Vertex(new Vector4(), new Vector4())
         tmpVertex.position.x = x
         tmpVertex.position.y = y
         tmpVertex.position.w = 1
-
         //深度插值 position.z
-        const p1Z = p1.position.z * i
-        const p2Z = p2.position.z * j
-        const p3Z = p3.position.z * k
-
-        tmpVertex.position.z = p1Z + p2Z + p3Z
-
+        interpolate(tmpVertex, 'position.z')
         //顶点颜色插值 color
-        const p1color = p1.color.clone().multiplyScalar(i)
-        const p2color = p2.color.clone().multiplyScalar(j)
-        const p3color = p3.color.clone().multiplyScalar(k)
-        const tmpcolor = new Vector4()
-        tmpVertex.color = tmpcolor.add(p1color).add(p2color).add(p3color)
-
+        interpolate(tmpVertex, 'color')
         //uv插值 uv
+        interpolate(tmpVertex, 'uv')
 
         _pixels.push(tmpVertex)
       }
